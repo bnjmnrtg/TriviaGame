@@ -14,7 +14,18 @@ $(document).ready(function(){
 					'Gobert'
 				],
 			correctAnswer: 'Gobert',
-		}
+		},
+		
+		Q2:{
+		text:'How many NBA MVP Awards has Tim Duncan won?',
+		answers:[
+			'1',
+			'2',
+			'3',
+			'4',
+		],
+		correctAnswer:'2',
+	}
 
 	};
 	
@@ -28,27 +39,32 @@ $(document).ready(function(){
 
 	function askQuestion(questions) {
 		$("#questions").empty();
+		$("#options").empty();
 		$("#questions").html(questions.text);
+		var b = questions.answers;
+		for (var i = 0; i < b.length; i++) {
+			var a =  $('<input type="radio" name="options" value="b[i]">'+ b[i] + '</input>');
+			$("#options").append(a);
+		};
+		
+		console.log(questions.answers[3]);
 	
-		// $("#A").append(questions.answers.a);
-		// $("#B").append(questions.answers.b);
-		// $("#C").append(questions.answers.c);
-		// $("#D").append(questions.answers.d);
-		var answers = questions.answers;
-		console.log(answers)
+	};
+
+
 
 		// need to create input for each answer.....
 		// loop through answers creating input for each.....
 		// when creating input give it a value of the answers text
 		// in submit, chek the value of the input..........
-	}
-
-	// $("#questions").html(questions[prop].text);
 	
-	// $("#A").append(questions[prop].answers.a);
-	// $("#B").append(questions[prop].answers.b);
-	// $("#C").append(questions[prop].answers.c);
-	// $("#D").append(questions[prop].answers.d);
+
+								// $("#questions").html(questions[prop].text);
+								
+								// $("#A").append(questions[prop].answers.a);
+								// $("#B").append(questions[prop].answers.b);
+								// $("#C").append(questions[prop].answers.c);
+								// $("#D").append(questions[prop].answers.d);
 	
 	$("#submitButton").on('click', function() {
 		if ( value=== questions.Q1.correctAnswer) {
@@ -60,7 +76,10 @@ $(document).ready(function(){
 			wrong++;
 			alert("Wrong");
 		}
-	})
+	
+})
+	
+
 
 //-----------------Timer -----------------------------------------
 
@@ -84,7 +103,7 @@ $(document).ready(function(){
 	}
 	
 	
-	run();	
+	// run();	
 	
 
 });
@@ -111,7 +130,7 @@ $(document).ready(function(){
 	// }
 	
 
-// Q2{
+// Q2{ USING
 // 		text:'How many NBA MVP Awards has Tim Duncan won?',
 // 		answers:{
 // 		a:'1',

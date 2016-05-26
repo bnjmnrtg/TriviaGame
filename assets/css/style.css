@@ -17,16 +17,13 @@ h3{
 	margin-left: 10px;
 }
 
-input{
-	margin-left: 10px;
-}
 
 h1{
 	text-align: center;
 	color: white;
 	border: solid white;
 	background-color: black;
-	width: 50%;
+	width: 40%;
 	margin: auto;
 
 }
@@ -47,4 +44,8 @@ h1{
 }
 #questions{
 	margin: 10px;
+}
+
+#options{
+	margin-left: 30px;
 }
