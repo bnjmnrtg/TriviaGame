@@ -4,8 +4,8 @@ $(document).ready(function(){
 	var a;
 	var b;
 	var rightAnswer;
- 	var correct = '';
- 	var wrong = '';
+ 	var correct = 0;
+ 	var wrong = 0;
  	var questionsAnswered;
  	var currentQuestion = 1;
  	
@@ -42,7 +42,28 @@ $(document).ready(function(){
 				'1',
 			],
 			correctAnswer:'2',
-		}
+		},
+		Q4:{
+			text:'How many NBA Finals MVP has Tim Duncan won?',
+			answers:[
+				'3',
+				'2',
+				'1',
+				'0',
+			],
+			correctAnswer:'3',
+		},
+
+		Q5:{
+			text:'How many NBA Titles have the Spurs Won?',
+			answers:[
+				'6',
+				'5',
+				'4',
+				'3',
+				],
+			correctAnswer:'5',
+			}
 
 	};
 	
@@ -58,7 +79,12 @@ $(document).ready(function(){
 
 	function askQuestion(currentQuestionObject) {
 		console.log('fn ran')
-		if (currentQuestion >= 4) {
+		if (currentQuestion >= 6) {
+			$("#title").html("Results:");
+			$("#timer").html("Game Over");
+			$("#options").empty();
+			$("#questions").html("Correct:  " + correct);			
+			$("#wrong").html("Wrong: " + wrong);
 			return;
 		}
 		run();
@@ -77,7 +103,7 @@ $(document).ready(function(){
 		for (var i = 0; i < b.length; i++) {
 			// myValue = b[i];
 			// console.log(myValue);
-			a =  $('<input type="radio" name="options" value='+b[i]+'>'+ b[i] + '</input>');
+			a =  $('<input type="radio" name="options" value='+b[i]+'>'+ b[i] +" "+ '</input>');
 			$("#options").append(a);
 		};
 	};
@@ -121,10 +147,10 @@ $(document).ready(function(){
 
 //-----------------Timer -----------------------------------------
 
-	var number = 3;
+	var number = 10;
 
 	function run(){
-		number = 3
+		number = 10
 		counter = setInterval(decrement, 1000);
 
 	}
@@ -160,16 +186,16 @@ $(document).ready(function(){
 
 
 
-// Q2{
+// Q2:{
 	// 	text:'',
 	// 	answers:[
-	// 	a:'',
-	// 	b:'',
-	// 	c:'',
-	// 	d:'',
+	// 		a:'',
+	// 		b:'',
+	// 		c:'',
+	// 		d:'',
 	// 	],
 	// 	correctAnswer:'',
-	// }
+	// },
 	
 
 // Q2{ USING
