@@ -1,8 +1,15 @@
 $(document).ready(function(){
 	var counter;
+	var myValue;
+	var a;
+	var b;
+	var rightAnswer;
  	var correct = '';
  	var wrong = '';
-  	var value = document.getElementById('rightanswer');
+ 	var questionsAnswered;
+ 	var currentQuestion = 1;
+ 	
+  	
 	var questions = {
 		Q1:{
 			text:'Who does not play for the Spurs?',
@@ -17,76 +24,109 @@ $(document).ready(function(){
 		},
 		
 		Q2:{
-		text:'How many NBA MVP Awards has Tim Duncan won?',
-		answers:[
-			'1',
-			'2',
-			'3',
-			'4',
-		],
-		correctAnswer:'2',
-	}
+			text:'How many NBA MVP Awards has Tim Duncan won?',
+			answers:[
+				'1',
+				'2',
+				'3',
+				'4',
+			],
+			correctAnswer:'2',
+		},
+		Q3:{
+			text:'How many Defensive MVPs has Kawhi Leonard won?',
+			answers:[
+				'4',
+				'3',
+				'2',
+				'1',
+			],
+			correctAnswer:'2',
+		}
 
 	};
 	
-	for (var prop in questions){
-		console.log(prop);
-		console.log(questions[prop]);
-		askQuestion(questions[prop])
-		// <input type="radio" value='Fine' />
+	// for (var prop in questions){
+	// 	console.log(prop);
+	// 	console.log(questions[prop]);
+	// 	askQuestion(questions[prop])
+	// 	rightAnswer = (questions[prop].correctAnswer);
 		
-	};
+		
+		
+	// };
 
-	function askQuestion(questions) {
+	function askQuestion(currentQuestionObject) {
+		console.log('fn ran')
+		if (currentQuestion >= 4) {
+			return;
+		}
+		run();
+		console.log(currentQuestion)
 		$("#questions").empty();
 		$("#options").empty();
-		$("#questions").html(questions.text);
-		var b = questions.answers;
+		a = "";
+		b = "";
+		$("#questions").html(currentQuestionObject.text);
+		console.log(questions)
+		rightAnswer = questions['Q'+currentQuestion].correctAnswer;
+
+		// check if rightAnswer is undefined and if so game is over
+		b = currentQuestionObject.answers;
+
 		for (var i = 0; i < b.length; i++) {
-			var a =  $('<input type="radio" name="options" value="b[i]">'+ b[i] + '</input>');
+			// myValue = b[i];
+			// console.log(myValue);
+			a =  $('<input type="radio" name="options" value='+b[i]+'>'+ b[i] + '</input>');
 			$("#options").append(a);
 		};
-		
-		console.log(questions.answers[3]);
-	
 	};
 
-
-
+	// console.log(myValue + " ,why is this my value??");
+	// console.log(rightAnswer);
+	
 		// need to create input for each answer.....
 		// loop through answers creating input for each.....
 		// when creating input give it a value of the answers text
 		// in submit, chek the value of the input..........
 	
 
-								// $("#questions").html(questions[prop].text);
-								
-								// $("#A").append(questions[prop].answers.a);
-								// $("#B").append(questions[prop].answers.b);
-								// $("#C").append(questions[prop].answers.c);
-								// $("#D").append(questions[prop].answers.d);
-	
 	$("#submitButton").on('click', function() {
-		if ( value=== questions.Q1.correctAnswer) {
+		// console.log(rightAnswer)
+		// console.log(myValue)
+		var userChoice = $('input[name=options]').filter(':checked').val()
+		// find which radio btn is selected if .checked == true
+		// if the value of tht btn == rightAnswer then correct else wrong
+		if ( userChoice === rightAnswer) {
 			correct++;
+			questionsAnswered++;
 			alert("Correct");
+			stop();
 
 		}
 		 else {
 			wrong++;
+			questionsAnswered++;
 			alert("Wrong");
-		}
-	
-})
-	
+			stop();
+		};
+		currentQuestion++
+		askQuestion(questions['Q'+currentQuestion]);
+	})
 
+	askQuestion(questions.Q1);
+	// rightAnswer = questions.Q1.correctAnswer;
+	
+// 
 
 //-----------------Timer -----------------------------------------
 
-	var number = 10;
+	var number = 3;
 
 	function run(){
+		number = 3
 		counter = setInterval(decrement, 1000);
+
 	}
 	
 	function decrement(){
@@ -94,6 +134,10 @@ $(document).ready(function(){
 		$("#timer").html("Time Remaining:  " + number + " ");
 		if (number === 0) {
 			stop();
+			questionsAnswered++;
+			wrong++;
+			currentQuestion++;
+			askQuestion(questions['Q'+currentQuestion]);
 			alert("Times Up!")
 		}
 	}
@@ -104,7 +148,7 @@ $(document).ready(function(){
 	
 	
 	// run();	
-	
+	console.log(wrong)
 
 });
 
@@ -112,65 +156,63 @@ $(document).ready(function(){
 
 
 
-//--------------!!!!!NOTES!!!!!!!-----------------------------------------------	
-// Google Radio Buttons and adding to empty div.
+//--------------!!!!!Questions!!!!!!!-----------------------------------------------	
 
-//Timer, SetTimeOut,
 
 
 // Q2{
 	// 	text:'',
-	// 	answers:{
+	// 	answers:[
 	// 	a:'',
 	// 	b:'',
 	// 	c:'',
 	// 	d:'',
-	// 	},
+	// 	],
 	// 	correctAnswer:'',
 	// }
 	
 
 // Q2{ USING
 // 		text:'How many NBA MVP Awards has Tim Duncan won?',
-// 		answers:{
-// 		a:'1',
-// 		b:'2',
-// 		c:'3',
-// 		d:'4',
-// 		},
+// 		answers:[
+// 		'1',
+// 		'2',
+// 		'3',
+// 		'4',
+// 		],
 // 		correctAnswer:'2',
 // 	}
 
 //Q3{
 	// 	text:'How many Defensive MVPs has Kawhi Leonard won?',
-	// 	answers:{
-	// 	a:'4',
-	// 	b:'3',
-	// 	c:'2',
-	// 	d:'1',
-	// 	},
+	// 	answers:[
+	// 	'4',
+	// 	'3',
+	// 	'2',
+	// 	'1',
+	// 	],
 	// 	correctAnswer:'2',
 	// }
 
 //Q4{
 	// 	text:'How many NBA Finals MVP has Tim Duncan won?',
-	// 	answers:{
-	// 	a:'3',
-	// 	b:'2',
-	// 	c:'1',
-	// 	d:'0',
-	// 	},
+	// 	answers:[
+	// 	'3',
+	// 	'2',
+	// 	'1',
+	// 	'0',
+	// 	],
 	// 	correctAnswer:'3',
 	// }
 
 //Q5{
 	// 	text:'How many NBA Titles have the Spurs Won?',
-	// 	answers:{
-	// 	a:'6',
-	// 	b:'5',
-	// 	c:'4',
-	// 	d:'3',
-	// 	},
+	// 	answers:[
+	// 	'6',
+	// 	'5',
+	// 	'4',
+	// 	'3',
+	// 	],
 	// 	correctAnswer:'5',
 	// }
 
