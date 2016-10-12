@@ -6,7 +6,7 @@ $(document).ready(function(){
 	var rightAnswer;
  	var correct = 0;
  	var wrong = 0;
- 	var questionsAnswered;
+ 	var questionsAnswered = 0;
  	var currentQuestion = 1;
  	
   	
@@ -78,7 +78,7 @@ $(document).ready(function(){
 	// };
 
 	function askQuestion(currentQuestionObject) {
-		console.log('fn ran')
+		console.log(questionsAnswered);
 		if (currentQuestion >= 6) {
 			$("#title").html("Results:");
 			$("#timer").html("Game Over");
@@ -88,7 +88,7 @@ $(document).ready(function(){
 			return;
 		}
 		run();
-		console.log(currentQuestion)
+		console.log(currentQuestion);
 		$("#questions").empty();
 		$("#options").empty();
 		a = "";
@@ -120,6 +120,7 @@ $(document).ready(function(){
 	$("#submitButton").on('click', function() {
 		// console.log(rightAnswer)
 		// console.log(myValue)
+
 		var userChoice = $('input[name=options]').filter(':checked').val()
 		// find which radio btn is selected if .checked == true
 		// if the value of tht btn == rightAnswer then correct else wrong
@@ -138,6 +139,12 @@ $(document).ready(function(){
 		};
 		currentQuestion++
 		askQuestion(questions['Q'+currentQuestion]);
+
+		if(questionsAnswered === 5){
+			$('#submitButton').remove();
+		}
+		
+
 	})
 
 	askQuestion(questions.Q1);
@@ -174,7 +181,7 @@ $(document).ready(function(){
 	
 	
 	// run();	
-	console.log(wrong)
+	// console.log(wrong)
 
 });
 
