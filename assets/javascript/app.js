@@ -6,11 +6,8 @@ $(document).ready(function(){
 	var rightAnswer;
  	var correct = 0;
  	var wrong = 0;
-<<<<<<< HEAD
  	var questionsAnswered = 0;
-=======
- 	var questionsAnswered;
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
+
  	var currentQuestion = 1;
  	
   	
@@ -82,11 +79,9 @@ $(document).ready(function(){
 	// };
 
 	function askQuestion(currentQuestionObject) {
-<<<<<<< HEAD
+
 		console.log(questionsAnswered);
-=======
-		console.log('fn ran')
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
+
 		if (currentQuestion >= 6) {
 			$("#title").html("Results:");
 			$("#timer").html("Game Over");
@@ -96,11 +91,8 @@ $(document).ready(function(){
 			return;
 		}
 		run();
-<<<<<<< HEAD
+
 		console.log(currentQuestion);
-=======
-		console.log(currentQuestion)
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
 		$("#questions").empty();
 		$("#options").empty();
 		a = "";
@@ -132,10 +124,7 @@ $(document).ready(function(){
 	$("#submitButton").on('click', function() {
 		// console.log(rightAnswer)
 		// console.log(myValue)
-<<<<<<< HEAD
 
-=======
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
 		var userChoice = $('input[name=options]').filter(':checked').val()
 		// find which radio btn is selected if .checked == true
 		// if the value of tht btn == rightAnswer then correct else wrong
@@ -154,15 +143,11 @@ $(document).ready(function(){
 		};
 		currentQuestion++
 		askQuestion(questions['Q'+currentQuestion]);
-<<<<<<< HEAD
 
 		if(questionsAnswered === 5){
 			$('#submitButton').remove();
 		}
-		
 
-=======
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
 	})
 
 	askQuestion(questions.Q1);
@@ -199,11 +184,8 @@ $(document).ready(function(){
 	
 	
 	// run();	
-<<<<<<< HEAD
 	// console.log(wrong)
-=======
-	console.log(wrong)
->>>>>>> e548badf5939a1f34a995d4f088bc60608bceb4c
+
 
 });
 
